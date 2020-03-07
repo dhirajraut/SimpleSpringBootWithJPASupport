@@ -4,8 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-
-import org.springframework.data.annotation.Id;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,16 +18,17 @@ import lombok.Setter;
 
 /* JPA Annotations. */
 @Entity
+@Table (name = "user")
 public class UserEntity {
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.SEQUENCE)
 	private long id;
 	
-	@Column (nullable = false)
+	@Column (nullable = false, name = "firstname")
 	private String firstName;
 	
-	@Column (nullable = true)
+	@Column (nullable = true, name = "lastname")
 	private String lastName;
 	
 	@Column (nullable = false)
