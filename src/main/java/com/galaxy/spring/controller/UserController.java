@@ -3,21 +3,20 @@ package com.galaxy.spring.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.galaxy.spring.exceptions.EntityNotFoundException;
+import com.galaxy.spring.exceptions.IntegrityViolationException;
 import com.galaxy.spring.service.UserService;
 import com.galaxy.spring.vo.UserVO;
 
 @RestController
-@RequestMapping (path = RestConstants.URL_USERS_BASE)
+@RequestMapping(path = RestConstants.URL_USERS_BASE)
 public class UserController implements IController<UserVO> {
-	
+
 	@Autowired
 	UserService userService;
 
@@ -29,16 +28,17 @@ public class UserController implements IController<UserVO> {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@Override
-	public Iterable<UserVO> save(UserVO userVO) throws DataIntegrityViolationException, EntityNotFoundException {
+	public Iterable<UserVO> save(UserVO userVO) throws IntegrityViolationException, EntityNotFoundException {
 		List<UserVO> userVOList = new ArrayList<UserVO>();
 		userVOList.add(userVO);
 		return userService.saveAll(userVOList);
 	}
-	
-	//@RequestMapping(method = RequestMethod.POST)
-	//@Override
-	//@TODO
-	public Iterable<UserVO> saveAll(Iterable<UserVO> userVOList) throws DataIntegrityViolationException, EntityNotFoundException {
+
+	// @RequestMapping(method = RequestMethod.POST)
+	// @Override
+	// @TODO
+	public Iterable<UserVO> saveAll(Iterable<UserVO> userVOList)
+			throws IntegrityViolationException, EntityNotFoundException {
 		return userService.saveAll(userVOList);
 	}
 

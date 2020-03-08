@@ -1,8 +1,8 @@
 package com.galaxy.spring.service;
 
-import javax.persistence.EntityNotFoundException;
 
-import org.springframework.dao.DataIntegrityViolationException;
+import com.galaxy.spring.exceptions.EntityNotFoundException;
+import com.galaxy.spring.exceptions.IntegrityViolationException;
 
 public interface IService<T> {
 	/**
@@ -19,7 +19,7 @@ public interface IService<T> {
 	 * @return
 	 * @throws ConstraintsViolationException
 	 */
-	public Iterable<T> saveAll(Iterable<T> objects) throws DataIntegrityViolationException, EntityNotFoundException;
+	public Iterable<T> saveAll(Iterable<T> objects) throws IntegrityViolationException, EntityNotFoundException;
 
 	/**
 	 * Deletes an object.

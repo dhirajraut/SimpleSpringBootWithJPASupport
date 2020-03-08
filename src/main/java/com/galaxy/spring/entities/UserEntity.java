@@ -10,11 +10,13 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /* Lombok Annotations. */
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 
 /* JPA Annotations. */
 @Entity
@@ -31,6 +33,6 @@ public class UserEntity {
 	@Column (nullable = true, name = "lastname")
 	private String lastName;
 	
-	@Column (nullable = false)
+	@Column (nullable = false, unique = true)
 	private String email;
 }

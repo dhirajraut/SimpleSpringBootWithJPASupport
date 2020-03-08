@@ -1,16 +1,16 @@
 package com.galaxy.spring.vo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import io.swagger.annotations.ApiParam;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 /* Lombok Annotations. */
 @Getter
 @Setter
 @NoArgsConstructor
+@ToString
 public class UserVO {
 
 	@ApiParam(hidden = true)

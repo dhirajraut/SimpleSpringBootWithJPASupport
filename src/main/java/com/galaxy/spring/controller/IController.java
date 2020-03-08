@@ -1,9 +1,9 @@
 package com.galaxy.spring.controller;
 
-import javax.persistence.EntityNotFoundException;
-
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.galaxy.spring.exceptions.IntegrityViolationException;
+import com.galaxy.spring.exceptions.EntityNotFoundException;
 
 /**
  * Common interface for all controllers in Tea Store.
@@ -25,20 +25,20 @@ public interface IController<T> {
 	 * 
 	 * @param objectList
 	 * @return
-	 * @throws DataIntegrityViolationException
+	 * @throws IntegrityViolationException
 	 * @throws EntityNotFoundException
 	 */
-	public Iterable<T> save(T object) throws DataIntegrityViolationException, EntityNotFoundException;
+	public Iterable<T> save(T object) throws IntegrityViolationException, EntityNotFoundException;
 
 	/**
 	 * Creates new objects.
 	 * 
 	 * @param objectList
 	 * @return
-	 * @throws DataIntegrityViolationException
+	 * @throws IntegrityViolationException
 	 * @throws EntityNotFoundException
 	 */
-	public Iterable<T> saveAll(Iterable<T> objectList) throws DataIntegrityViolationException, EntityNotFoundException;
+	public Iterable<T> saveAll(Iterable<T> objectList) throws IntegrityViolationException, EntityNotFoundException;
 
 	/**
 	 * Deletes an object.

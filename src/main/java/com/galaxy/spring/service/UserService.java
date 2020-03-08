@@ -2,14 +2,14 @@ package com.galaxy.spring.service;
 
 import java.util.List;
 
-import javax.persistence.EntityNotFoundException;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.galaxy.spring.entities.UserEntity;
+import com.galaxy.spring.exceptions.EntityNotFoundException;
+import com.galaxy.spring.exceptions.IntegrityViolationException;
 import com.galaxy.spring.jpa.IUserRepository;
 import com.galaxy.spring.vo.UserVO;
 import com.google.common.reflect.TypeToken;
@@ -32,11 +32,18 @@ public class UserService implements IService<UserVO> {
 
 	@Override
 	public Iterable<UserVO> saveAll(Iterable<UserVO> userVOList)
-			throws DataIntegrityViolationException, EntityNotFoundException {
-		Iterable<UserEntity> userEntityList = modelMapper.map(userVOList, new TypeToken<List<UserEntity>>() {}.getType());
-		Iterable<UserEntity> savedEntities = repository.saveAll(userEntityList);
-		Iterable<UserVO> savedUserVOList = modelMapper.map(savedEntities, new TypeToken<List<UserVO>>() {}.getType());
-		return savedUserVOList;
+			throws IntegrityViolationException, EntityNotFoundException {
+		Iterable<UserEntity> userEntityList = modelMapper.map(userVOList, new TypeToken<List<UserEntity>>() {
+		}.getType());
+
+		try {
+			Iterable<UserEntity> savedEntities = repository.saveAll(userEntityList);
+			Iterable<UserVO> savedUserVOList = modelMapper.map(savedEntities, new TypeToken<List<UserVO>>() {
+			}.getType());
+			return savedUserVOList;
+		} catch (DataIntegrityViolationException exception) {
+			throw new IntegrityViolationException("Could not save object(s)", exception);
+		}
 	}
 
 	@Override
