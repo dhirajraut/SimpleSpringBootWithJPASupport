@@ -2,8 +2,8 @@ package com.galaxy.spring.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.galaxy.spring.exceptions.IntegrityViolationException;
-import com.galaxy.spring.exceptions.EntityNotFoundException;
+import com.galaxy.spring.exception.EntityNotFoundException;
+import com.galaxy.spring.exception.IntegrityViolationException;
 
 /**
  * Common interface for all controllers in Tea Store.

@@ -13,8 +13,9 @@ import org.junit.rules.ExpectedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.Assert;
 
-import com.galaxy.spring.exceptions.EntityNotFoundException;
-import com.galaxy.spring.exceptions.IntegrityViolationException;
+import com.galaxy.spring.exception.EntityNotFoundException;
+import com.galaxy.spring.exception.IntegrityViolationException;
+import com.galaxy.spring.service.UserService;
 import com.galaxy.spring.vo.UserVO;
 
 @Transactional

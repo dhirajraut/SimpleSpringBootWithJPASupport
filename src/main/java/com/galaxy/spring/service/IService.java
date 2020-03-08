@@ -1,8 +1,8 @@
 package com.galaxy.spring.service;
 
 
-import com.galaxy.spring.exceptions.EntityNotFoundException;
-import com.galaxy.spring.exceptions.IntegrityViolationException;
+import com.galaxy.spring.exception.EntityNotFoundException;
+import com.galaxy.spring.exception.IntegrityViolationException;
 
 public interface IService<T> {
 	/**

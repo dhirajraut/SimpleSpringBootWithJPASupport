@@ -17,6 +17,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.util.Assert;
 
+import com.galaxy.spring.controller.UserController;
 import com.galaxy.spring.service.UserService;
 import com.galaxy.spring.vo.UserVO;
 

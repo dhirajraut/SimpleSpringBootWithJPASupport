@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.galaxy.spring.exceptions.EntityNotFoundException;
-import com.galaxy.spring.exceptions.IntegrityViolationException;
+import com.galaxy.spring.exception.EntityNotFoundException;
+import com.galaxy.spring.exception.IntegrityViolationException;
 import com.galaxy.spring.service.UserService;
 import com.galaxy.spring.vo.UserVO;
 

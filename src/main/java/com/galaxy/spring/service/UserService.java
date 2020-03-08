@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
-import com.galaxy.spring.entities.UserEntity;
-import com.galaxy.spring.exceptions.EntityNotFoundException;
-import com.galaxy.spring.exceptions.IntegrityViolationException;
+import com.galaxy.spring.entity.UserEntity;
+import com.galaxy.spring.exception.EntityNotFoundException;
+import com.galaxy.spring.exception.IntegrityViolationException;
 import com.galaxy.spring.jpa.IUserRepository;
 import com.galaxy.spring.vo.UserVO;
 import com.google.common.reflect.TypeToken;
