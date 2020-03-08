@@ -4,43 +4,56 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.galaxy.spring.entities.UserEntity;
-import com.galaxy.spring.jpa.IUserDAO;
+import com.galaxy.spring.jpa.IUserRepository;
 import com.galaxy.spring.vo.UserVO;
+import com.google.common.reflect.TypeToken;
 
 @Service
 public class UserService implements IService<UserVO> {
-	
+
 	@Autowired
-	IUserDAO repository;
+	IUserRepository repository;
+	@Autowired
+	ModelMapper modelMapper;
 
 	@Override
 	public Iterable<UserVO> findAll() {
-		List<UserEntity> findAll = repository.findAll();
-		System.out.println(findAll);
-		return null;
+		List<UserEntity> userEntityList = repository.findAll();
+		List<UserVO> userVOList = modelMapper.map(userEntityList, new TypeToken<List<UserVO>>() {
+		}.getType());
+		return userVOList;
 	}
 
 	@Override
-	public Iterable<UserVO> save(UserVO id) throws DataIntegrityViolationException, EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterable<UserVO> saveAll(Iterable<UserVO> userVOList)
+			throws DataIntegrityViolationException, EntityNotFoundException {
+		Iterable<UserEntity> userEntityList = modelMapper.map(userVOList, new TypeToken<List<UserEntity>>() {}.getType());
+		Iterable<UserEntity> savedEntities = repository.saveAll(userEntityList);
+		Iterable<UserVO> savedUserVOList = modelMapper.map(savedEntities, new TypeToken<List<UserVO>>() {}.getType());
+		return savedUserVOList;
 	}
 
 	@Override
-	public void deleteById(int id) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-
+	public void deleteById(long id) throws EntityNotFoundException {
+		if (repository.existsById(id)) {
+			repository.deleteById(id);
+		} else {
+			throw new EntityNotFoundException("Couldn't find Entity");
+		}
 	}
 
 	@Override
-	public UserVO findById(int id) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public UserVO findById(long id) throws EntityNotFoundException {
+		UserEntity userEntity = repository.findById(id)
+				.orElseThrow(() -> new EntityNotFoundException("Couldn't find Entity"));
+		UserVO userVO = modelMapper.map(userEntity, UserVO.class);
+		return userVO;
 	}
 
 }

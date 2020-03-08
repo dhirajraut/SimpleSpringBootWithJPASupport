@@ -26,23 +26,20 @@ public class UserController implements IController<UserVO> {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@Override
-	public Iterable<UserVO> save(UserVO userVO) throws DataIntegrityViolationException, EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterable<UserVO> saveAll(Iterable<UserVO> userVOList) throws DataIntegrityViolationException, EntityNotFoundException {
+		return userService.saveAll(userVOList);
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE)
 	@Override
 	public void deleteById(int id) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		
+		userService.deleteById(id);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = RestConstants.URL_USERS_FINDBYID)
 	@Override
 	public UserVO findById(int id) throws EntityNotFoundException {
-		// TODO Auto-generated method stub
-		return null;
+		return userService.findById(id);
 	}
 
 }

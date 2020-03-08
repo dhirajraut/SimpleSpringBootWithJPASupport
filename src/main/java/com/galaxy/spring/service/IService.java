@@ -13,13 +13,13 @@ public interface IService<T> {
 	public Iterable<T> findAll();
 
 	/**
-	 * Creates a new object.
+	 * Creates new objects.
 	 * 
 	 * @param user
 	 * @return
 	 * @throws ConstraintsViolationException
 	 */
-	public Iterable<T> save(T object) throws DataIntegrityViolationException, EntityNotFoundException;
+	public Iterable<T> saveAll(Iterable<T> objects) throws DataIntegrityViolationException, EntityNotFoundException;
 
 	/**
 	 * Deletes an object.
@@ -27,7 +27,7 @@ public interface IService<T> {
 	 * @param id
 	 * @throws EntityNotFoundException
 	 */
-	public void deleteById(int id) throws EntityNotFoundException;
+	public void deleteById(long id) throws EntityNotFoundException;
 
 	/**
 	 * Finds object by id.
@@ -36,5 +36,5 @@ public interface IService<T> {
 	 * @return
 	 * @throws EntityNotFoundException
 	 */
-	public T findById(int id) throws EntityNotFoundException;
+	public T findById(long id) throws EntityNotFoundException;
 }

@@ -21,14 +21,14 @@ public interface IController<T> {
 	public Iterable<T> findAll();
 
 	/**
-	 * Creates a new object.
+	 * Creates new objects.
 	 * 
-	 * @param object
+	 * @param objectList
 	 * @return
 	 * @throws DataIntegrityViolationException
 	 * @throws EntityNotFoundException
 	 */
-	public Iterable<T> save(T object) throws DataIntegrityViolationException, EntityNotFoundException;
+	public Iterable<T> saveAll(Iterable<T> objectList) throws DataIntegrityViolationException, EntityNotFoundException;
 
 	/**
 	 * Deletes an object.
