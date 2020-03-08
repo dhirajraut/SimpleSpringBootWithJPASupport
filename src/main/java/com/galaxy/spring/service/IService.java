@@ -27,7 +27,7 @@ public interface IService<T> {
 	 * @param id
 	 * @throws EntityNotFoundException
 	 */
-	public void deleteById(long id) throws EntityNotFoundException;
+	public void deleteById(Long id) throws EntityNotFoundException;
 
 	/**
 	 * Finds object by id.
@@ -36,5 +36,5 @@ public interface IService<T> {
 	 * @return
 	 * @throws EntityNotFoundException
 	 */
-	public T findById(long id) throws EntityNotFoundException;
+	public T findById(Long id) throws EntityNotFoundException;
 }

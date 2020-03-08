@@ -47,18 +47,18 @@ public class UserService implements IService<UserVO> {
 	}
 
 	@Override
-	public void deleteById(long id) throws EntityNotFoundException {
+	public void deleteById(Long id) throws EntityNotFoundException {
 		if (repository.existsById(id)) {
 			repository.deleteById(id);
 		} else {
-			throw new EntityNotFoundException("Couldn't find Entity");
+			throw new EntityNotFoundException("Couldn't find entity with id: " + id);
 		}
 	}
 
 	@Override
-	public UserVO findById(long id) throws EntityNotFoundException {
+	public UserVO findById(Long id) throws EntityNotFoundException {
 		UserEntity userEntity = repository.findById(id)
-				.orElseThrow(() -> new EntityNotFoundException("Couldn't find Entity"));
+				.orElseThrow(() -> new EntityNotFoundException("Couldn't find entity with id: " + id));
 		UserVO userVO = modelMapper.map(userEntity, UserVO.class);
 		return userVO;
 	}

@@ -46,7 +46,7 @@ public interface IController<T> {
 	 * @param id
 	 * @throws EntityNotFoundException
 	 */
-	public void deleteById(int id) throws EntityNotFoundException;
+	public void deleteById(Long id) throws EntityNotFoundException;
 
 	/**
 	 * Finds object by id.
@@ -55,5 +55,5 @@ public interface IController<T> {
 	 * @return
 	 * @throws EntityNotFoundException
 	 */
-	public T findById(int id) throws EntityNotFoundException;
+	public T findById(Long id) throws EntityNotFoundException;
 }
