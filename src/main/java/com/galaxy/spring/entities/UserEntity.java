@@ -22,7 +22,7 @@ import lombok.Setter;
 public class UserEntity {
 
 	@Id
-	@GeneratedValue (strategy = GenerationType.SEQUENCE)
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@Column (nullable = false, name = "firstname")

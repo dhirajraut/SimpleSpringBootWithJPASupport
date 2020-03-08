@@ -1,5 +1,8 @@
 package com.galaxy.spring.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +29,15 @@ public class UserController implements IController<UserVO> {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@Override
+	public Iterable<UserVO> save(UserVO userVO) throws DataIntegrityViolationException, EntityNotFoundException {
+		List<UserVO> userVOList = new ArrayList<UserVO>();
+		userVOList.add(userVO);
+		return userService.saveAll(userVOList);
+	}
+	
+	//@RequestMapping(method = RequestMethod.POST)
+	//@Override
+	//@TODO
 	public Iterable<UserVO> saveAll(Iterable<UserVO> userVOList) throws DataIntegrityViolationException, EntityNotFoundException {
 		return userService.saveAll(userVOList);
 	}
